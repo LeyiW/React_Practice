@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    // Use spread syntax
+    let arr1 = [1,2,3]
+    console.log(...arr1) 
+
+    let arr2 = [3,4,5]
+    let arr3 = [...arr1 , ...arr2]  //concat arr1 and arr2
+    console.log(arr3)
+
+    //Use in functions: 让输入参数可变 
+    //arr.reduce: 数组求和
+    function sum(...nums) {
+        return numbers.reduce((preVal , currVal) => {
+            return preVal + currVal;
+        });
+    }
+
+    
+    </script>
+</body>
+</html>

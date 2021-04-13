@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EX1 : Change Weather via ArrowFunction</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引入proptypes -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <script type="text/babel">
+    //Ex2 practice with props
+    class Person extends React.Component {
+        
+        //Props： 通过组件的属性往里传值
+        //注意 props是只读的
+        render() {
+            const{name , age , gender} = this.props;
+            return (
+              <ul>
+              <li>name : {name}</li>
+              <li>age: {age}</li>
+              <li>gender: {gender}</li> 
+            </ul>
+            )
+        }
+        //把做验证的类使用static作为类的属性移动到了类里
+        static propTypes = {
+          name : PropTypes.string.isRequired,
+          age : PropTypes.number,
+          gender : PropTypes.string,
+          speak: PropTypes.func
+        }
+
+        static defaultProps = {
+          gender: "Unknow",
+          age: 18
+        }
+    }
+    
+    
+
+    ReactDOM.render(
+      <Person name="Leyi" age={24}  />,
+      document.getElementById('root')
+    );
+
+    const leo =  {name : "Leo" , speak : speak() }
+    ReactDOM.render(<Person {...leo}/> ,document.getElementById('root2') )
+
+    function speak(){
+      console.log("I am speaking")
+    }
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

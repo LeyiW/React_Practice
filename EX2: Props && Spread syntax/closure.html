@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type = "text/javascript">
+    function randomFunc(){
+        var obj1 = {name:"Vivian", age:45};
+        console.log(obj1);
+        return function(){
+            // return function2(){
+                console.log(obj1.name + " is "+ "awesome"); // Has access to obj1 even when the randomFunc function is executed
+            // }
+        }
+        }
+
+        var initialiseClosure = randomFunc(); // Returns a function
+        console.log(initialiseClosure)
+        initialiseClosure(); 
+
+
+    </script>
+</body>
+</html>

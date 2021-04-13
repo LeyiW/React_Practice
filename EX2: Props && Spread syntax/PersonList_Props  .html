@@ -5,36 +5,54 @@
     <title>EX1 : Change Weather via ArrowFunction</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引入proptypes -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <div id="root2"></div>
     <script type="text/babel">
-    class Weather extends React.Component {
-        state = {isHot : true};
-
+    //Ex2 practice with props
+    class Person extends React.Component {
+        
+        //Props： 通过组件的属性往里传值
         render() {
-            const{isHot} = this.state;
-            return <h1 onClick = {this.changeWeather}> The Weather today is  
-                {this.state.isHot === true ? 'HOT' : 'COLD'} </h1>
-        }
-
-        //arrow function do not have this
-        //在箭头函数出现之前，每一个新函数根据它是被如何调用的来定义这个函数的this值：
-        // 如果是该函数是一个构造函数，this指针指向一个新的对象
-        // 在严格模式下的函数调用下，this指向undefined
-        // --> 如果是该函数是一个对象的方法，则它的this指针指向这个对象
-        changeWeather = () => {
-          const isHot = this.state.isHot;
-          this.setState({isHot : !isHot});
-       }
+            const{name , age , gender} = this.props;
+            return (
+              <ul>
+              <li>name : {name}</li>
+              <li>age: {age}</li>
+              <li>gender: {gender}</li> 
+            </ul>
+            )
+        }  
     }
-      ReactDOM.render(
-        <Weather/>,
-        document.getElementById('root')
-      );
+    //props 也可以用来做验证 验证输入的值是不是规定类型的 Used for Validation
+    Person.propTypes = {
+      name : PropTypes.string.isRequired,
+      age : PropTypes.number,
+      gender : PropTypes.string,
+      speak: PropTypes.func
+    }
+
+    Person.defaultProps = {
+      gender: "Unknow",
+      age: 18
+    }
+
+    ReactDOM.render(
+      <Person name="Leyi" age={24}  />,
+      document.getElementById('root')
+    );
+
+    const leo =  {name : "Leo" , speak : speak() }
+    ReactDOM.render(<Person {...leo}/> ,document.getElementById('root2') )
+
+    function speak(){
+      console.log("I am speaking")
+    }
 
     </script>
     <!--
