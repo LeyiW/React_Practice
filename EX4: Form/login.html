@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class Login extends React.Component {
+        handleSubmit = (event) => {
+            event.preventDefault()
+            const{username , password} = this
+            alert("Username : " + username.value + " password : " + password.value)
+            // alert('UserName : ${username.value}, password : ${password.value}')
+        }
+        render() {
+            return (
+                <form onSubmit = {this.handleSubmit}>
+                    <input ref={c => this.username = c}  type='text' /><br/> 
+                    <input ref={c => this.password = c} type='password' /><br/> 
+                    <button >Login</button>
+                </form>
+            )
+        }
+    }
+    
+    ReactDOM.render( <Login / >, document.getElementById("root") );
+    </script>
+  </body>
+</html>

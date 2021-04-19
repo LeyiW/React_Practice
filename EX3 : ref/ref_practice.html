@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EX3 : String_Ref</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class Demo extends React.Component {
+        showContent1 = () => {
+            //show content after click Buton
+            //find input1 via ref use String
+            const {input1} = this.refs
+            alert(input1.value)
+        }
+
+        //第二种 callback function得到ref 当前组件的node
+        showContent2 = () => {
+            //find ref via call back function
+            //在组件 ref属性中 返回的值就是当前组件代表的Node 把它赋给this.input 再在这个方法里得到
+            const {input2} = this
+            alert(this.input2.value)
+        }
+
+        //第三种得到ref方法 createRef创建了一个容器 并“专人专用”的把node存在了那里
+
+        myRef = React.createRef()
+        showContent3 = () => {
+            const {myRef} = this
+            console.log("@MyRef : ", myRef) // myRef is a key value pair, key:current value: the node
+            alert(myRef.current.value)
+        }
+
+        render() {
+            return (
+                <div>
+                    <input ref = 'input1' type = 'text' placeholder = 'Show content after Click button '/> &nbsp;
+                    <button onClick = {this.showContent1} > Click Me to Show input1</button><br/>
+                    <input ref = {currentNode => this.input2 = currentNode} type = 'text' placeholder = 'Show content after !onblur' onBlur ={this.showContent2}/><br/>
+                    <input ref = {this.myRef} type = 'text' placeholder = 'CreateRef() '/> &nbsp;
+                    <button onClick = {this.showContent3} > Click Me to Show input3</button><br/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo/> , document.getElementById('root'))
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

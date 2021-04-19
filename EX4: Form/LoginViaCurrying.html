@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Currying Login</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    //优化了受控Login 不能现用现取 需要从input里面拿值放到state里 这样可以实时检查
+    //将username 和 password等写在一个function里
+    class Login extends React.Component {
+
+        state = {
+          username : '',
+          password : ''
+        }
+
+        // saveUsername = (event) => {
+        //   this.setState({username : event.target.value})
+        // }
+
+        // savePassword = (event) => {
+        //   this.setState({password : event.target.value})
+        // }
+
+        //函数currying应用 将单一功能的函数合并 传入username / password 然后接到回调函数 setState 实现受控组件
+        saveForm = (dataType) => {
+          //console.log('@' ,dataType)
+          return (event) => {
+            console.log(dataType , event.target.value )
+            // 注意 给object的属性赋值的时候 是用中括号 意为 key [dataType]
+            this.setState({[dataType] : event.target.value})
+
+          }
+          
+        }
+
+        handleSubmit = (event) => {
+            event.preventDefault()
+            const{username , password} = this.state
+            alert("Username : " + username + " password : " + password)
+            // alert('UserName : ${username.value}, password : ${password.value}')
+        }
+        render() {
+            return (
+                <form onSubmit = {this.handleSubmit}>
+                    <input onChange = {this.saveForm('username')} type='text' /><br/> 
+                    <input onChange = {this.saveForm('password')} type='password' /><br/> 
+                    <button >Login</button>
+                </form>
+            )
+        }
+    }
+    
+    ReactDOM.render( <Login / >, document.getElementById("root") );
+    </script>
+  </body>
+</html>
