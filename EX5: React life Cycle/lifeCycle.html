@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Template</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <noscript> Text</noscript>
+    <div id="root"></div>
+    <script type="text/babel">
+    class A extends React.Component{
+      
+      constructor(props){
+        super(props);
+        this.state = {car : 'ACar'}
+
+      }
+
+      changeCar = () => {
+        this.setState({car : 'BCar'})
+      }
+
+      render(){
+        return(
+          <div>
+            <h2>This is A</h2>
+            <button onClick = {this.changeCar}>Change Car</button>
+            <B car={this.state.car}/>
+          </div>
+        )
+      }
+    }
+
+    class B extends React.Component{
+      constructor(props){
+        super(props)
+      }
+      render() {
+        return(
+          <div>
+            <h2>This is B</h2>
+            <h2>Now B has Car as : {this.props.car}</h2>
+          </div>
+        ) 
+      }
+    }
+
+
+    ReactDOM.render( <A/>, document.getElementById('root'))
+
+    </script>
+  </body>
+</html>
