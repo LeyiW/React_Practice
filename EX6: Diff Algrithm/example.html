@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Template</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class Person extends React.Component{
+      state = {
+        persons:[
+          {id:1,name:'Zhang',age:18},
+          {id:2,name:'Wang',age:19}
+        ]
+      }
+
+      add = () => {
+        const {persons} = this.state;
+        const p = {id:3,name:'Lee',age:20}
+        this.setState({persons:[p , ...persons]})
+      }
+
+      render(){
+        return (
+          <div>
+            <h3>Use index as Key</h3>
+            <button onClick= {this.add}> add one person </button>
+            <ul>
+            {
+              this.state.persons.map((personObj , index) => {
+                return <li key ={index}>{personObj.name}---{personObj.age}<input type='text'/></li>
+              })
+            }
+            </ul>
+            <h3>Use id as Key</h3>
+            <ul>
+            {
+              this.state.persons.map((personObj) => {
+                return <li key ={personObj.id}>{personObj.name}---{personObj.age}<input type='text'/></li>
+              })
+            }
+            </ul>
+          </div>
+          
+        )
+      }
+    }
+
+    ReactDOM.render(<Person/> , document.getElementById('root'))
+
+    
+
+    </script>
+  </body>
+</html>
