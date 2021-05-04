@@ -1,0 +1,16 @@
+.img_background_chicken{
+    width: 100%;
+    max-height: 400px;
+    object-fit:cover;
+}
+.img_background_grass{
+    width: 100%;
+    max-height: 400px;
+    object-fit:cover;
+}
+.img_background_old{
+    width: 100%;
+    max-height: 400px;
+    object-fit:cover;
+}
+

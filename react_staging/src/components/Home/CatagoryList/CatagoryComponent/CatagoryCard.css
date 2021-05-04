@@ -1,0 +1,19 @@
+.customize_card{
+    padding-left:10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.customize_card :hover {
+    overflow: hidden;
+    transform: scale(1.01);
+    transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.75);
+    opacity: 0.95;
+}
+
+/* card header */
+.c_Header{
+    text-align: center;
+    /* color: #393e46; */
+    background: #eeebdd !important;
+}
